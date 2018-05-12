@@ -63,3 +63,22 @@ Route::post('/post/store','PostController@store');
 Route::get('/post/edit/{id}','PostController@edit');
 Route::post('/post/update','PostController@update');
 Route::get('/post/destroy/{id}','PostController@destroy');
+
+
+
+Route::get('/archivo/create', 'SubirArchivoController@create');
+Route::post('/archivo/store', 'SubirArchivoController@store');
+Route::get('/archivo/destroy/{nom}', 'SubirArchivoController@destroy');
+
+
+//Routes for Thurexercise
+
+
+Route::get('cv','CvController@index');
+Route::post('cv','CvController@store');
+
+
+//Routes for WHATEVER
+
+Route::get('whatever/array','WhateverController@index');
+Route::post('whatever/array','WhateverController@create');
