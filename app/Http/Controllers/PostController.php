@@ -23,6 +23,36 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function table(){
+        $datos = User::all();
+        $datos = array("datos" => $datos);
+        return view('post.showTable',$datos);
+    }
+
+    public function searchTable($id){
+        $posts = Post::where('user_id',$id)->get();
+        $posts = array('posts' => $posts);
+        return view('post.searchResults',$posts);
+    }
+
+    function getData($id){
+        $posts = Post::where('user_id',$id)->get()->toArray();
+        $posts = array('posts'=>$posts);
+        return $posts;
+    }
+
+    public function downloadExcel($id){
+        \Maatwebsite\Excel::create('Laravel Excel',function($excel){
+            $arr = self::getData($id);
+            $excel->setTitle('Posts');
+            $excel->sheet('Excel sheet', function($sheet) use($arr){
+               $sheet->fromArray($arr,null,'A1',false,false);
+               // $sheet->row(1,array('data1','data2'));
+            });
+        })->download('xls');
+    }
+
+
     public function index()
     {
         $posts = Post::all();

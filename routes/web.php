@@ -63,8 +63,9 @@ Route::post('/post/store','PostController@store');
 Route::get('/post/edit/{id}','PostController@edit');
 Route::post('/post/update','PostController@update');
 Route::get('/post/destroy/{id}','PostController@destroy');
-
-
+Route::get('/post/table','PostController@table');
+Route::get('/post/table/search/{id}','PostController@searchTable');
+Route::get('/post/table/getExcel/{id}','PostController@downloadExcel');
 
 Route::get('/archivo/create', 'SubirArchivoController@create');
 Route::post('/archivo/store', 'SubirArchivoController@store');
